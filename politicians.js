@@ -1,51 +1,121 @@
+var senatorUrl = "https://www.govtrack.us/api/v2/role?current=true&role_type=senator"
+var representativeUrl = "https://www.govtrack.us/api/v2/role?current=true&role_type=representative&limit=438"
+
+var stateList = ["AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID", "IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","PR","PW","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"];
+
+var button = d3.select("#state-btn");
 
 
-function buildRepData(input) {
+// var state_input = d3.select
 
-    //  builds the politician data panel
+function formClick(){
+  d3.event.preventDefault();
+  // get value of drop down choice
+  var entryType = d3.select("#selDataset");
+  var entryValue = entryType.property("value");
+  console.log(entryValue);
+
+  // get value of search input
+  var formInput = d3.select("#search-criteria");
+  var state_input = formInput.property("value");
+  console.log(state_input);
+
   
-    // Use `d3.json` to fetch the data for a sample
-    var senatorUrl = "https://www.govtrack.us/api/v2/role?current=true&role_type=senator"
-    var representativeUrl = "https://www.govtrack.us/api/v2/role?current=true&role_type=representative&limit=438"
+function buildSenData(input) {
 
+
+    //  builds the Senator data panel
+    // Use `d3.json` to fetch the data for a sample
+   
     d3.json(senatorUrl).then(function (senatorData) {
       var objects = senatorData.objects;
-      
+
+       
+
       for (var i = 0; i < objects.length; i++) {
+        if (objects[i].state == state_input){
+        var s_state = objects[i].state;
+        var s_firstname = objects[i].person.firstname;
+        var s_lastname = objects[i].person.lastname;
+        var s_phone = objects[i].phone;
+        var s_title = objects[i].title_long;
+        var s_party = objects[i].party;
+        var s_address = objects[i].extra.address;
+        var s_contact = objects[i].extra.contact_form;
         
-        var state = objects[i].state;
-        var firstname = objects[i].person.firstname;
-        var lastname = objects[i].person.lastname;
-        var phone = objects[i].phone;
-        var title = objects[i].title_long;
-        var party = objects[i].party;
-        var address = objects[i].extra.address;
-        var contact = objects[i].extra.contact_form;
-        
-        console.log(state);
-      
-      
 
-
-
-      //     // Use d3 to select the panel with id of `#sample-metadata`
+      // Use d3 to select the panel with id of `#politicians-card`
       var panel = d3.select('#politicians-card');
-      //     // Use `.html("") to clear any existing metadata
+      // Use `.html("") to clear any existing data
       panel.html(" ");
+
       
-  
-      panel.append('p').html(`STATE: ${state}`);
-      panel.append('p').html(`NAME: ${firstname} ${lastname}`);
-      panel.append('p').html(`TITLE: ${title}`);
-      panel.append('p').html(`PHONE: ${phone}`);
-      panel.append('p').html(`PARTY: ${party}`);
-      panel.append('p').html(`ADDRESS: ${address}`);
-      panel.append('p').html(`CONTACT:  <a href="${contact}">${firstname} ${lastname}</a> `);
-  
+        
+      // Add to politician card
+      panel.append('p').html(`STATE: ${s_state}`);
+      panel.append('p').html(`NAME: ${s_firstname} ${s_lastname}`);
+      panel.append('p').html(`TITLE: ${s_title}`);
+      panel.append('p').html(`PHONE: ${s_phone}`);
+      panel.append('p').html(`PARTY: ${s_party}`);
+      panel.append('p').html(`ADDRESS: ${s_address}`);
+      panel.append('p').html(`CONTACT:  <a href="${s_contact}">${s_firstname} ${s_lastname}</a>`);
   };
+};  
 });
   
   };
 
+  function buildRepData(input) {
+
+    //  builds the Senator data panel
+    // Use `d3.json` to fetch the data for a sample
+   
+    d3.json(representativeUrl).then(function (repData) {
+      var objects = repData.objects;
+      
+      for (var i = 0; i < objects.length; i++) {
+        if (objects[i].state == state_input){
+        var r_state = objects[i].state;
+        var r_firstname = objects[i].person.firstname;
+        var r_lastname = objects[i].person.lastname;
+        var r_phone = objects[i].phone;
+        var r_title = objects[i].title_long;
+        var r_party = objects[i].party;
+        var r_address = objects[i].extra.address;
+        var r_contact = objects[i].extra.contact_form;
+        
+        // console.log(r_state);
+  
+      // Use d3 to select the panel with id of `#politicians-card`
+      var panel = d3.select('#politicians-card');
+      // // Use `.html("") to clear any existing data
+      // panel.html(" ");
+      // Add to politician card
+      panel.append('p').html(`STATE: ${r_state}`);
+      panel.append('p').html(`NAME: ${r_firstname} ${r_lastname}`);
+      panel.append('p').html(`TITLE: ${r_title}`);
+      panel.append('p').html(`PHONE: ${r_phone}`);
+      panel.append('p').html(`PARTY: ${r_party}`);
+      panel.append('p').html(`ADDRESS: ${r_address}`);
+      panel.append('p').html(`CONTACT:  <a href="${r_contact}">${r_firstname} ${r_lastname}</a>`);
+  };
+};
+});
+  
+
+// function optionChanged(state_input) {
+//   // Fetch new data each time a new sample is selected
+//   buildSenData(state_input);
+//   buildRepData(state_input);
+// }
+
+  };
+
+  buildSenData();
+  ;
+
   buildRepData();
   ;
+
+};
+button.on("click", formClick);
