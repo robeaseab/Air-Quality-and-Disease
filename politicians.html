@@ -59,61 +59,84 @@
 </nav>
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <h1>Air Pollution and Public Health</h1>
-      </div>
-    </div>
 
-    <!-- zip code bar -->
-    <div class="row">
-      <form>
-        <div class="form-group">
-          <p>Enter your zip code:</p>
-          <ul class="list-group" id="filters">
-            <li class="filter list-group-item">
-              <label for="zip">Zip Code:</label>
-              <input class="form-control" id="search-criteria" type="text" placeholder="enter search">
-            </li>
-          </ul>
-        </div>
-        <button id="filter-btn" type="submit" class="btn btn-default">Search</button>
-      </form>
-    </div>
-
-
-    <!-- graph section -->
+    <!-- ////// -->
     <div class="row">
       <div class="col-xs-12  col-md-9">
-        <div id="graph">
-          <!-- svg/graph goes here. historical data on your zipcode vs national average-->
+        <div class="well">
+          <h5>I want to take action!:</h5>
+          <select id="selDataset">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>	
+          <button id="state-btn" type="submit" class="btn btn-default">Search</button>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Who to Contact:</h3>
+          </div>
+          <div id="politicians-card" class="panel-body">
+            
+          </div>
         </div>
       </div>
-    </div>
-  <div class="row">
-    <div class="col-xs-12  col-md-9">
-      <div class="article">
-        <h2>Correlations Between Air Pollution and Public Health</h2>
-        <p>Paragraph 1- we explain what this project is</p>
-        <p>Paragraph 2- why you should care about air quality - health, environment, etc</p>
-        <p>Paragraph 3- what you can do about it, ie: contact your representatives</p>
-      </div>
-    </div>
-  </div>
-  </div>
-</div>
 
   <!-- Footer-->
   <div id="footer">
     <p>By Winnie, Lei, and Rob</p>
   </div>
-  <!-- API key -->
-  <script type="text/javascript" src="config.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
   <!-- js files -->
-  <script type="text/javascript" src="graph.js"></script>
-  <script type="text/javascript" src="heatmap.js"></script>
   <script type="text/javascript" src="politicians.js"></script>
 
 

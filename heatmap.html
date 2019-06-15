@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Air Quality and Disease</title>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
+    
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
@@ -59,62 +61,29 @@
 </nav>
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <h1>Air Pollution and Public Health</h1>
-      </div>
-    </div>
-
-    <!-- zip code bar -->
-    <div class="row">
-      <form>
-        <div class="form-group">
-          <p>Enter your zip code:</p>
-          <ul class="list-group" id="filters">
-            <li class="filter list-group-item">
-              <label for="zip">Zip Code:</label>
-              <input class="form-control" id="search-criteria" type="text" placeholder="enter search">
-            </li>
-          </ul>
-        </div>
-        <button id="filter-btn" type="submit" class="btn btn-default">Search</button>
-      </form>
-    </div>
-
-
-    <!-- graph section -->
+    <!-- heatmap section -->
     <div class="row">
       <div class="col-xs-12  col-md-9">
-        <div id="graph">
-          <!-- svg/graph goes here. historical data on your zipcode vs national average-->
+        <div id="map">
+          <!-- heatmap goes here. -->
         </div>
       </div>
     </div>
-  <div class="row">
-    <div class="col-xs-12  col-md-9">
-      <div class="article">
-        <h2>Correlations Between Air Pollution and Public Health</h2>
-        <p>Paragraph 1- we explain what this project is</p>
-        <p>Paragraph 2- why you should care about air quality - health, environment, etc</p>
-        <p>Paragraph 3- what you can do about it, ie: contact your representatives</p>
-      </div>
-    </div>
-  </div>
-  </div>
-</div>
 
   <!-- Footer-->
   <div id="footer">
     <p>By Winnie, Lei, and Rob</p>
   </div>
-  <!-- API key -->
-  <script type="text/javascript" src="config.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+  <!-- API key -->
+  <script type="text/javascript" src="config.js"></script>
   <!-- js files -->
   <script type="text/javascript" src="graph.js"></script>
   <script type="text/javascript" src="heatmap.js"></script>
   <script type="text/javascript" src="politicians.js"></script>
+  <script type="text/javascript" src="leaflet-heat.js"></script>
+  
 
 
 </body>
