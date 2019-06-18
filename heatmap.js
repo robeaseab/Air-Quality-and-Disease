@@ -32,9 +32,9 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 var file = "worldairdata.csv";
 var heatArray = [];
-var lat = [];
-var lng = [];
-var latlng = [];
+var lats = [];
+var lngs = [];
+var latLngs = [];
 var PM = [];
 
 // Load data from hours-of-tv-watched.csv
@@ -43,32 +43,41 @@ d3.csv(file, function(error, airData) {
 
   // console.log(airData);
     for (var i = 0; i < airData.length; i++) {
-      lat.push(airData[i].lat);
-      lng.push(airData[i].lng);
-      var PMl = +airData[i].PM25
-      PM.push(PMl);
-      latlng.push(L.latLng(lat, lng));
-      heatArray.push(latlng);
+      var lat = +airData[i].lat;
+      var lng = +airData[i].lng;
+      var PMl = +airData[i].PM25;
+      var latLng = L.latLng(lat, lng);
+      lats.push(lat);
+      lngs.push(lng);
+      PM.push(PMl); 
+      latLngs.push(latLng)
+
+  // Define a markerSize function that will give each quake a different radius based on its mag
+
+  function markerColor(PMl) {
+    if (PMl>=100){
+      return "red";
     }
-      
-    
-    console.log(heatArray);
-    console.log(PM);
-    
-      
-    
-      var heat = L.heatLayer(lat, lng, PM, {radius: 5}).addTo(map);
-    
+    else if (PMl>=50){
+       return "yellow";
+    }
+    else if (PMl<50){
+       return "green";
+    }
+
+  }
+
+  function markerSize(PMl) {
+    return PMl*2000;
+  }
+
+ 
+  L.circle(latLng, {
+    fillOpacity: .30,
+    color: markerColor(PMl),
+    fillColor: markerColor(PMl),
+    // Setting our circle's radius equal to the output of our markerSize function
+    radius: markerSize(PMl)
+  }).bindPopup("<h3>Date:  " + airData[i].date + "</h3><h1>PM 2.5:  " + PMl + "</h1>").addTo(myMap);
+}
 });
-
-
-
-
-
-
-
-  
-
-
-
-    
