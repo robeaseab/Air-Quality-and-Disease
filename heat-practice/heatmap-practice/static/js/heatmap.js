@@ -18,6 +18,7 @@ var svg = d3
   .attr("width", svgWidth)
   .attr("height", svgHeight);
 
+  
 var myMap = L.map("map", {
   center: [41.881832, -87.623177],
   zoom: 2
@@ -30,7 +31,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: MAPBOX_API_KEY
 }).addTo(myMap);
 
-var file = "worldairdata.csv";
+var file = "static/js/worldairdata.csv";
 var heatArray = [];
 var lat = [];
 var lng = [];
