@@ -46,6 +46,16 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/heatmap")
+def heatmap():
+    return render_template("heatmap.html")
+
+
+@app.route("/politicians")
+def politicians():
+    return render_template("politicians.html")
+
+
 @app.route("/names")
 def names():
     """Return City Names"""

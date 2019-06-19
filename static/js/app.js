@@ -40,7 +40,7 @@ function buildCharts(sample) {
             width: 800
         };
 
-        Plotly.plot("bubble", data_bubble, layout1);
+        Plotly.newPlot("bubble", data_bubble, layout1);
 
         let data_pie = [{
             values: u.data_values.slice(0, 10),
@@ -56,7 +56,7 @@ function buildCharts(sample) {
             width: 800
         };
 
-        Plotly.plot("pie", data_pie, layout2);
+        Plotly.newPlot("pie", data_pie, layout2);
     })
 }
 

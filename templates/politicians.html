@@ -31,42 +31,44 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- Home/TITLE -->
-  <a class="navbar-brand" href="index.html">AIR QUALITY</a>
+  <a class="navbar-brand" href="/">AIR QUALITY</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
 
-          <!-- home -->
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-        </li>
-          <!-- heatmap -->
-          <li class="nav-item">
-              <a class="nav-link" href="heatmap.html">See Current Air Quality</a>
-          </li>
-          <!-- Politicians -->
-          <li class="nav-item">
-              <a class="nav-link" href="politicians.html" tabindex="-1">Contact My Representatives</a>
-          </li>
-      </ul>
+      <!-- home -->
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <!-- heatmap -->
+      <li class="nav-item">
+        <a class="nav-link" href="/heatmap">See Current Air Quality</a>
+      </li>
+      <!-- Politicians -->
+      <li class="nav-item">
+        <a class="nav-link" href="/politicians" tabindex="-1">Contact My Representatives</a>
+      </li>
+    </ul>
 
   </div>
 </nav>
+
 <body>
   <div class="container">
-<h1>What Can I do?</h1>
-<p>You can make a difference by contacting your representatives.  Use the form below to find contact information for representatives in your state. 
+    <h1>What Can I do?</h1>
+    <p>You can make a difference by contacting your representatives. Use the form below to find contact information for
+      representatives in your state.
     </p>
     <!-- ////// -->
     <div class="row">
       <div class="col-xs-12  col-md-9">
         <div class="well">
-          
+
           <select id="selDataset" style="font-size:27px;">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -119,30 +121,32 @@
             <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
-          </select>	
-              <button id="state-btn" type="submit" class="btn btn-default"><h4>I want to take action!</h4></button>
-          
-          
+          </select>
+          <button id="state-btn" type="submit" class="btn btn-default">
+            <h4>I want to take action!</h4>
+          </button>
+
+
         </div>
-        
+
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Who to Contact:</h3>
           </div>
           <div id="politicians-card" class="panel-body">
-            
+
           </div>
         </div>
       </div>
 
-  <!-- Footer-->
-  <div id="footer">
-    <p>By Winnie, Lei, and Rob</p>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <!-- js files -->
-  <script type="text/javascript" src="politicians.js"></script>
+      <!-- Footer-->
+      <div id="footer">
+        <p>By Winnie, Lei, and Rob</p>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+      <!-- js files -->
+      <script src="{{ url_for('static', filename='js/politicians.js') }}"></script>
 
 
 </body>
