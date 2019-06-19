@@ -30,54 +30,54 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: MAPBOX_API_KEY
 }).addTo(myMap);
 
-var file = "worldairdata.csv";
+var url = `/world`
 var heatArray = [];
 var lats = [];
 var lngs = [];
 var latLngs = [];
 var PM = [];
 
-// Load data from hours-of-tv-watched.csv
-d3.csv(file, function(error, airData) {
+d3.json(url, function (error, airData) {
   if (error) return console.warn(error);
+  console.log("hey hey", airData)
+  console.log("hey length", airData.lat.length)
 
-  // console.log(airData);
-    for (var i = 0; i < airData.length; i++) {
-      var lat = +airData[i].lat;
-      var lng = +airData[i].lng;
-      var PMl = +airData[i].PM25;
-      var latLng = L.latLng(lat, lng);
-      lats.push(lat);
-      lngs.push(lng);
-      PM.push(PMl); 
-      latLngs.push(latLng)
+  for (var i = 0; i < airData.lat.length; i++) {
+    var lat = +airData.lat[i];
+    var lng = +airData.lng[i];
+    var PMl = +airData.PM25[i];
+    var latLng = L.latLng(lat, lng);
+    lats.push(lat);
+    lngs.push(lng);
+    PM.push(PMl);
+    latLngs.push(latLng)
 
-  // Define a markerSize function that will give each quake a different radius based on its mag
+    // Define a markerSize function that will give each quake a different radius based on its mag
 
-  function markerColor(PMl) {
-    if (PMl>=100){
-      return "red";
+    function markerColor(PMl) {
+      if (PMl >= 100) {
+        return "red";
+      }
+      else if (PMl >= 50) {
+        return "yellow";
+      }
+      else if (PMl < 50) {
+        return "green";
+      }
+
     }
-    else if (PMl>=50){
-       return "yellow";
-    }
-    else if (PMl<50){
-       return "green";
+
+    function markerSize(PMl) {
+      return PMl * 2000;
     }
 
+    L.circle(latLng, {
+      fillOpacity: .30,
+      color: markerColor(PMl),
+      fillColor: markerColor(PMl),
+      // Setting our circle's radius equal to the output of our markerSize function
+      radius: markerSize(PMl)
+    }).bindPopup("<h3>Date:  " + airData.date[i] + "</h3><h1>PM 2.5:  " + PMl + "</h1>").addTo(myMap);
   }
-
-  function markerSize(PMl) {
-    return PMl*2000;
-  }
-
- 
-  L.circle(latLng, {
-    fillOpacity: .30,
-    color: markerColor(PMl),
-    fillColor: markerColor(PMl),
-    // Setting our circle's radius equal to the output of our markerSize function
-    radius: markerSize(PMl)
-  }).bindPopup("<h3>Date:  " + airData[i].date + "</h3><h1>PM 2.5:  " + PMl + "</h1>").addTo(myMap);
-}
+  console.log("PM", PM)
 });

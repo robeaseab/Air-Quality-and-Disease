@@ -1,3 +1,4 @@
+from pathlib import Path
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, jsonify, render_template
 import os
@@ -11,7 +12,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 import pymysql
 pymysql.install_as_MySQLdb()
-
 
 app = Flask(__name__)
 database = {
@@ -38,6 +38,7 @@ Base.prepare(db.engine, reflect=True)
 print(Base.metadata.tables.keys())
 Summary2016 = Base.classes.summary_2016
 AirSummary = Base.classes.air_summary
+WorldAir = Base.classes.worldaire
 
 
 @app.route("/")
@@ -100,6 +101,21 @@ def airquality(airquality):
         "data_values": df[airquality].values.tolist(),
     }
     return jsonify(data)
+
+
+@app.route("/world")
+def world():
+
+    stmt = db.session.query(WorldAir).statement
+    WorldAir_df = pd.read_sql_query(stmt, db.session.bind)
+
+    WorldAir_data = {
+        "lat": WorldAir_df.lat.values.tolist(),
+        "lng": WorldAir_df.lng.values.tolist(),
+        "PM25": WorldAir_df.PM25.values.tolist(),
+        "date": WorldAir_df.date.values.tolist(),
+    }
+    return jsonify(WorldAir_data)
 
 
 if __name__ == "__main__":
