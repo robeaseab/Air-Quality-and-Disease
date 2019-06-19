@@ -37,12 +37,23 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 print(Base.metadata.tables.keys())
 Summary2016 = Base.classes.summary_2016
+AirSummary = Base.classes.air_summary
 
 
 @app.route("/")
 def index():
-    """Return the homepage."""
+    """Homepage"""
     return render_template("index.html")
+
+
+@app.route("/names")
+def names():
+    """Return City Names"""
+
+    stmt = db.session.query(AirSummary).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
+
+    return jsonify(list(df.columns)[1:])
 
 
 @app.route("/data/<citydata>")
@@ -66,6 +77,19 @@ def summary2016(citydata):
 
     print(Summary2016_dict)
     return jsonify(Summary2016_dict)
+
+
+@app.route("/airquality/<airquality>")
+def airquality(airquality):
+    """Return `Year`, `data_values`."""
+    stmt = db.session.query(AirSummary).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
+
+    data = {
+        "Year": df.Year.values.tolist(),
+        "data_values": df[airquality].values.tolist(),
+    }
+    return jsonify(data)
 
 
 if __name__ == "__main__":
