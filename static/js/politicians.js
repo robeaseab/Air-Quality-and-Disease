@@ -30,19 +30,17 @@ function formClick() {
         var s_address = objects[i].extra.address;
         var s_contact = objects[i].extra.contact_form;
 
-        // Use d3 to select the panel with id of `#politicians-card`
-        var panel = d3.select('#politicians-card');
-        // Use `.html("") to clear any existing data
-        panel.html(" ");
-
-        // Add to politician card
-        panel.append('p').html(`STATE: ${s_state}`);
-        panel.append('p').html(`NAME: ${s_firstname} ${s_lastname}`);
-        panel.append('p').html(`TITLE: ${s_title}`);
-        panel.append('p').html(`PHONE: ${s_phone}`);
-        panel.append('p').html(`PARTY: ${s_party}`);
-        panel.append('p').html(`ADDRESS: ${s_address}`);
-        panel.append('p').html(`CONTACT:  <a href="${s_contact}">${s_firstname} ${s_lastname}</a>`);
+         // Use d3 to select the panel with id of `#politicians-card`
+      var panel = d3.select('#politicians-card');
+      panel.html('')
+      var box = panel.append('div').attr("class", "panel panel-primary")
+      var head = box.append("div").attr("class" , "panel-heading");
+      var title = head.append("div").attr("class" , "panel-title").html(`  ${s_firstname} ${s_lastname}, ${s_state} ${s_title}`).enter(); ;
+      title.append("div").attr("class","panel-body");
+      panel.append('p').html(`  PHONE: ${s_phone}`);
+      panel.append('p').html(`  PARTY: ${s_party}`);
+      panel.append('p').html(`  ADDRESS: ${s_address}`);
+      panel.append('p').html(`  CONTACT:  <a href="${s_contact}">${s_firstname} ${s_lastname}</a>`);
       };
     };
 
@@ -62,17 +60,15 @@ function formClick() {
           var r_contact = objects[i].extra.contact_form;
 
 
-          // Use d3 to select the panel with id of `#politicians-card`
+           // Use d3 to select the panel with id of `#politicians-card`
           var panel = d3.select('#politicians-card');
-
-          // Add to politician card
-          panel.append('p').html(`STATE: ${r_state}`);
-          panel.append('p').html(`NAME: ${r_firstname} ${r_lastname}`);
-          panel.append('p').html(`TITLE: ${r_title}`);
-          panel.append('p').html(`PHONE: ${r_phone}`);
-          panel.append('p').html(`PARTY: ${r_party}`);
-          panel.append('p').html(`ADDRESS: ${r_address}`);
-          panel.append('p').html(`CONTACT:  <a href="${r_contact}">${r_firstname} ${r_lastname}</a>`);
+          var head = panel.append("div").attr("class" , "panel-heading");
+          var title = head.append("div").attr("class" , "panel-title").html(`  ${r_firstname} ${r_lastname}, ${r_state} ${r_title}`).enter(); ;
+          title.append("div").attr("class","panel-body");
+          panel.append('p').html(`  PHONE: ${r_phone}`);
+          panel.append('p').html(`  PARTY: ${r_party}`);
+          panel.append('p').html(`  ADDRESS: ${r_address}`);
+          panel.append('p').html(`  CONTACT:  <a href="${r_contact}">${r_firstname} ${r_lastname}</a>`);
         };
       };
     });

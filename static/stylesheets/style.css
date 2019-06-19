@@ -5,6 +5,20 @@
   border: 1px solid #e3e3e3;
 }
 
+.panel-primary{
+  padding: 20px;
+}
+
+.panel-body{
+  padding-top: 20px;
+  padding-left: 30px;
+}
+
+.panel-body p{
+  padding: 20px;
+  padding-bottom: 80px;
+}
+
 /* Sticky Footer rules (https://getbootstrap.com/examples/sticky-footer/) */
 html {
   position: relative;
@@ -17,7 +31,7 @@ body {
 }
 
 #footer {
-  position: relative;
+  position: bottom;
   bottom: 0;
   width: 100%; /* Set the fixed height of the footer here */
   height: 10px;
