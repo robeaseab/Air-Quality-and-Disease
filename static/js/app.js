@@ -25,7 +25,6 @@ function buildCharts(sample) {
         let data_bubble = [{
             x: u.Year.slice(0, 10),
             y: u.data_values.slice(0, 10),
-            hovertext: u.data_values.slice(0, 10),
             text: u.Year.slice(0, 10),
             mode: 'markers',
             name: `Sample ${sample}`,
@@ -42,21 +41,20 @@ function buildCharts(sample) {
 
         Plotly.newPlot("bubble", data_bubble, layout1);
 
-        let data_pie = [{
-            values: u.data_values.slice(0, 10),
-            labels: u.Year.slice(0, 10),
+        let data_bar = [{
+            y: u.data_values.slice(0, 10),
+            x: u.Year.slice(0, 10),
             hovertext: u.Year.slice(0, 10),
-            text: u.Year.slice(0, 10),
-            type: "pie"
+            type: "bar"
         }];
 
         var layout2 = {
-            title: 'Pie Chart',
+            title: 'AQI vs Year',
             height: 600,
             width: 800
         };
 
-        Plotly.newPlot("pie", data_pie, layout2);
+        Plotly.newPlot("bar", data_bar, layout2);
     })
 }
 
