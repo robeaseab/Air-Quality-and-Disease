@@ -77,6 +77,8 @@ def summary2016(citydata):
         Summary2016.COPD_Prevalence,
         Summary2016.Stroke_Prevalence,
         Summary2016.Heart_Prevalence,
+        Summary2016.Median_AQI,
+        Summary2016.Population,
     ]
 
     results = db.session.query(
@@ -85,16 +87,37 @@ def summary2016(citydata):
     # Create a dictionary entry for each row of metadata information
     Summary2016_dict = {}
     for result in results:
-        Summary2016_dict["-City"] = result[0]
-        Summary2016_dict["-State"] = result[1]
-        Summary2016_dict["Asthma(Prevalence)"] = result[2]
-        Summary2016_dict["COPD(Prevalence)"] = result[3]
-        Summary2016_dict["Stroke(Prevalence)"] = result[4]
-        Summary2016_dict["Heart(Prevalence)"] = result[5]
+        Summary2016_dict["City"] = result[0]
+        Summary2016_dict["State"] = result[1]
+        Summary2016_dict["Asthma_Prevalence"] = result[2]
+        Summary2016_dict["COPD_Prevalence"] = result[3]
+        Summary2016_dict["Stroke_Prevalence"] = result[4]
+        Summary2016_dict["Heart_Prevalence"] = result[5]
+        Summary2016_dict["Median_AQI"] = result[6]
+        Summary2016_dict["Population"] = result[7]
 
     print(Summary2016_dict)
     return jsonify(Summary2016_dict)
 
+@app.route("/disease/<disease>")
+def disease2016(diseasedata):
+    """Return the MetaData for a given sample."""
+    sel = [
+        Summary2016.City,
+        Summary2016.State,
+        Summary2016.Asthma_Prevalence,
+        Summary2016.COPD_Prevalence,
+        Summary2016.Stroke_Prevalence,
+        Summary2016.Heart_Prevalence,
+        Summary2016.Median_AQI,
+        Summary2016.Population,
+    ]
+
+    results = db.session.query(
+        *sel).all()
+
+    # print(results)
+    return jsonify(results)
 
 @app.route("/airquality/<airquality>")
 def airquality(airquality):

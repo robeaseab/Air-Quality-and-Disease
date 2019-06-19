@@ -17,6 +17,30 @@ function showData(citydata) {
         }
 
         buildTest(test["Asthma(Prevalence)"])
+
+        // const city_sample = `/data/${sample}`
+        // d3.json(city_sample).then(function (u) {
+        // console.log("hello city", u)
+        
+        // let data_bubble = [{
+        //     x: test.Asthma_Prevalence,
+        //     y: test.Median_AQI,
+        //     text: test.City,
+        //     mode: 'markers',
+        //     // name: `Sample ${sample}`,
+        //     marker: {
+        //         size: test.Population,
+        //     }
+        // }];
+
+        // var layout1 = {
+        //     title: 'Air Quality Index',
+        //     height: 600,
+        //     width: 800
+        // };
+
+        // Plotly.newPlot("bubble", data_bubble, layout1);
+
     });
 }
 
@@ -26,31 +50,31 @@ function buildCharts(sample) {
     d3.json(air_sample).then(function (u) {
         console.log("hello there", u)
 
-        let sample_array = u.data_values.slice(0, 10)
+        let sample_array = u.data_values
 
-        let data_bubble = [{
-            x: u.Year.slice(0, 10),
-            y: u.data_values.slice(0, 10),
-            text: u.Year.slice(0, 10),
-            mode: 'markers',
-            name: `Sample ${sample}`,
-            marker: {
-                size: sample_array,
-            }
-        }];
+        // let data_bubble = [{
+        //     x: u.Year,
+        //     y: u.data_values,
+        //     text: u.Year.slice,
+        //     mode: 'markers',
+        //     name: `Sample ${sample}`,
+        //     marker: {
+        //         size: sample_array,
+        //     }
+        // }];
 
-        var layout1 = {
-            title: 'Bubble Chart',
-            height: 600,
-            width: 800
-        };
+        // var layout1 = {
+        //     title: 'Air Quality Index',
+        //     height: 600,
+        //     width: 800
+        // };
 
-        Plotly.newPlot("bubble", data_bubble, layout1);
+        // Plotly.newPlot("bubble", data_bubble, layout1);
 
         let data_bar = [{
-            y: u.data_values.slice(0, 10),
-            x: u.Year.slice(0, 10),
-            hovertext: u.Year.slice(0, 10),
+            y: u.data_values,
+            x: u.Year,
+            hovertext: u.Year,
             type: "bar"
         }];
 
@@ -61,6 +85,30 @@ function buildCharts(sample) {
         };
 
         Plotly.newPlot("bar", data_bar, layout2);
+    })
+
+    const disease_sample = `/disease/${sample}`
+    d3.json(disease_sample).then(function (u) {
+        console.log("hello dis", u)
+        
+        let data_bubble = [{
+            x: u.Asthma_Prevalence,
+            y: u.Median_AQI,
+            text: u.City,
+            mode: 'markers',
+            // name: `Sample ${sample}`,
+            marker: {
+                size: u.Population,
+            }
+        }];
+
+        var layout1 = {
+            title: 'Air Quality Index',
+            height: 600,
+            width: 800
+        };
+
+        Plotly.newPlot("bubble", data_bubble, layout1);
     })
 }
 
