@@ -11,6 +11,12 @@ function showData(citydata) {
             console.log(key, value)
             cell.html(`<td>${key}:</td><td>${value}</td>`)
         })
+
+        function buildTest(pizza) {
+            console.log("great", pizza)
+        }
+
+        buildTest(test["Asthma(Prevalence)"])
     });
 }
 

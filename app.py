@@ -85,12 +85,12 @@ def summary2016(citydata):
     # Create a dictionary entry for each row of metadata information
     Summary2016_dict = {}
     for result in results:
-        Summary2016_dict["`City"] = result[0]
-        Summary2016_dict["`State"] = result[1]
-        Summary2016_dict["Asthma (Prevalence)"] = result[2]
-        Summary2016_dict["COPD (Prevalence)"] = result[3]
-        Summary2016_dict["Stroke (Prevalence)"] = result[4]
-        Summary2016_dict["Heart (Prevalence)"] = result[5]
+        Summary2016_dict["-City"] = result[0]
+        Summary2016_dict["-State"] = result[1]
+        Summary2016_dict["Asthma(Prevalence)"] = result[2]
+        Summary2016_dict["COPD(Prevalence)"] = result[3]
+        Summary2016_dict["Stroke(Prevalence)"] = result[4]
+        Summary2016_dict["Heart(Prevalence)"] = result[5]
 
     print(Summary2016_dict)
     return jsonify(Summary2016_dict)
