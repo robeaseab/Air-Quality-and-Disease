@@ -27,8 +27,13 @@
         crossorigin=""></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!-- CSS Scripts -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="d3Style.css">
     <link rel="stylesheet" href="style.css" />
+=======
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/d3Style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+>>>>>>> 538e3244206d33b01ff5da33bdda4b23c3c6bbfd
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -36,7 +41,11 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Home/TITLE -->
+<<<<<<< HEAD
         <a class="navbar-brand" href="index.html">AIR QUALITY</a>
+=======
+        <a class="navbar-brand" href="/">AIR QUALITY</a>
+>>>>>>> 538e3244206d33b01ff5da33bdda4b23c3c6bbfd
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,6 +57,7 @@
 
                 <!-- home -->
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <!-- heatmap -->
@@ -57,6 +67,17 @@
                 <!-- Politicians -->
                 <li class="nav-item">
                     <a class="nav-link" href="politicians.html" tabindex="-1">Contact My Representatives</a>
+=======
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <!-- heatmap -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/heatmap">See Current Air Quality</a>
+                </li>
+                <!-- Politicians -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/politicians" tabindex="-1">Contact My Representatives</a>
+>>>>>>> 538e3244206d33b01ff5da33bdda4b23c3c6bbfd
                 </li>
             </ul>
 
@@ -67,24 +88,24 @@
         <div class="row">
             <div class="col-md-12 jumbotron text-center">
                 <h1>Air Cleanliness</h1>
-                <p>and Your Health</p>
+                <h2>and Your Health</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <div class="well">
-                    <h5>SELECT Sample:</h5>
+                    <h5>Select City:</h5>
                     <select id="selDataset" onchange="optionChanged(this.value)"></select>
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Sample MetaData</h3>
+                        <h3 class="panel-title">Statistics</h3>
                     </div>
                     <div id="sample-metadata" class="panel-body"></div>
                 </div>
             </div>
-            <div class="col-md-9">
-                <div id="pie"></div>
+            <div class="col-md-7">
+                <div id="bar"></div>
             </div>
         </div>
         <div class="row">
@@ -93,16 +114,11 @@
                 <h1> </h1>
             </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <div id="bubble"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="gauge"></div>
-            </div>
-        </div> -->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
