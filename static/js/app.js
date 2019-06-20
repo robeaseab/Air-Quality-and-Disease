@@ -1,5 +1,87 @@
-function showData(citydata) {
+// let svgWidth = 960;
+// let svgHeight = 500;
 
+// let margin = {
+//     top: 20,
+//     right: 40,
+//     bottom: 80,
+//     left: 100
+// };
+
+// let width = svgWidth - margin.left - margin.right;
+// let height = svgHeight - margin.top - margin.bottom;
+
+// let svg = d3
+//     .select(".chart")
+//     .append("svg")
+//     .attr("width", svgWidth)
+//     .attr("height", svgHeight);
+
+// let chartGroup = svg.append("g")
+//     .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+// let chosenXAxis = "Asthma_Prevalence";
+
+// function xScale(xData, chosenXAxis) {
+//     let xLinearScale = d3.scaleLinear()
+//         .domain([d3.min(xData, d => d[chosenXAxis]) * 0.8,
+//         d3.max(xData, d => d[chosenXAxis]) * 1.2
+//         ])
+//         .range([0, width]);
+
+//     return xLinearScale;
+// }
+
+// function renderAxes(newXScale, xAxis) {
+//     let bottomAxis = d3.axisBottom(newXScale);
+
+//     xAxis.transition()
+//         .duration(1000)
+//         .call(bottomAxis);
+
+//     return xAxis;
+// }
+
+// function renderCircles(circlesGroup, newXScale, chosenXaxis) {
+
+//     circlesGroup.transition()
+//         .duration(1000)
+//         .attr("cx", d => newXScale(d[chosenXAxis]));
+
+//     return circlesGroup;
+// }
+
+// function updateToolTip(chosenXAxis, circlesGroup) {
+
+//     if (chosenXAxis === "Asthma_Prevalence") {
+//         let label = "Asthma_Prevalence:";
+//     }
+//     else {
+//         let label = "COPD_Prevalence:";
+//     }
+
+//     var toolTip = d3.tip()
+//         .attr("class", "tooltip")
+//         .offset([80, -60])
+//         .html(function (d) {
+//             return (`${d.City}<br>${label} ${d[chosenXAxis]}`);
+//         });
+
+//     circlesGroup.call(toolTip);
+
+//     circlesGroup.on("mouseover", function (data) {
+//         toolTip.show(data);
+//     })
+//         .on("mouseout", function (data, index) {
+//             toolTip.hide(data);
+//         });
+
+//     return circlesGroup;
+// }
+
+
+
+function showData(citydata) {
     const url = `/data/${citydata}`
     d3.json(url).then(function (test) {
 
@@ -18,29 +100,6 @@ function showData(citydata) {
 
         buildTest(test["Asthma(Prevalence)"])
 
-        // const city_sample = `/data/${sample}`
-        // d3.json(city_sample).then(function (u) {
-        // console.log("hello city", u)
-        
-        // let data_bubble = [{
-        //     x: test.Asthma_Prevalence,
-        //     y: test.Median_AQI,
-        //     text: test.City,
-        //     mode: 'markers',
-        //     // name: `Sample ${sample}`,
-        //     marker: {
-        //         size: test.Population,
-        //     }
-        // }];
-
-        // var layout1 = {
-        //     title: 'Air Quality Index',
-        //     height: 600,
-        //     width: 800
-        // };
-
-        // Plotly.newPlot("bubble", data_bubble, layout1);
-
     });
 }
 
@@ -51,25 +110,6 @@ function buildCharts(sample) {
         console.log("hello there", u)
 
         let sample_array = u.data_values
-
-        // let data_bubble = [{
-        //     x: u.Year,
-        //     y: u.data_values,
-        //     text: u.Year.slice,
-        //     mode: 'markers',
-        //     name: `Sample ${sample}`,
-        //     marker: {
-        //         size: sample_array,
-        //     }
-        // }];
-
-        // var layout1 = {
-        //     title: 'Air Quality Index',
-        //     height: 600,
-        //     width: 800
-        // };
-
-        // Plotly.newPlot("bubble", data_bubble, layout1);
 
         let data_bar = [{
             y: u.data_values,
@@ -87,30 +127,53 @@ function buildCharts(sample) {
         Plotly.newPlot("bar", data_bar, layout2);
     })
 
-    const disease_sample = `/disease/${sample}`
-    d3.json(disease_sample).then(function (u) {
-        console.log("hello dis", u)
-        
-        let data_bubble = [{
-            x: u.Asthma_Prevalence,
-            y: u.Median_AQI,
-            text: u.City,
-            mode: 'markers',
-            // name: `Sample ${sample}`,
+    // const disease_sample = `/disease/${sample}`
+    // d3.json(disease_sample).then(function (u) {
+    //     console.log("hello dis", u)
+
+    //     let data_bubble = [{
+    //         x: u.Asthma_Prevalence,
+    //         y: u.Median_AQI,
+    //         text: u.City,
+    //         mode: 'markers',
+    //         // name: `Sample ${sample}`,
+    //         marker: {
+    //             size: u.Population,
+    //         }
+    //     }];
+
+    //     var layout1 = {
+    //         title: 'Air Quality Index',
+    //         height: 600,
+    //         width: 800
+    //     };
+
+    //     Plotly.newPlot("bubble", data_bubble, layout1);
+    // })
+}
+
+function buildSecond() {
+
+    const url2 = `/alldata`
+    d3.json(url2).then(function (data1) {
+        console.log("tessssss", data1.Asthma)
+        console.log("gdsfdsgds", data1.City)
+
+        var trace = [{
+            x: data1.City,
+            y: data1.Asthma,
+            mode: "markers",
+            type: "scatter",
             marker: {
-                size: u.Population,
+                color: "#2077b4",
+                symbol: "hexagram"
             }
         }];
 
-        var layout1 = {
-            title: 'Air Quality Index',
-            height: 600,
-            width: 800
-        };
-
-        Plotly.newPlot("bubble", data_bubble, layout1);
+        Plotly.newPlot("bubble", trace);
     })
 }
+
 
 function init() {
     var selector = d3.select("#selDataset");
@@ -127,12 +190,14 @@ function init() {
         console.log("first sample", firstSample)
         showData(firstSample);
         buildCharts(firstSample);
+        buildSecond();
     })
 }
 
 function optionChanged(newSample) {
     showData(newSample);
     buildCharts(newSample);
+    buildSecond();
 }
 
 init();
