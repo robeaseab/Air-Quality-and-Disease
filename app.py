@@ -89,11 +89,11 @@ def summary2016(citydata):
     for result in results:
         Summary2016_dict["-City"] = result[0]
         Summary2016_dict["-State"] = result[1]
-        Summary2016_dict["Asthma_Prevalence"] = result[2]
-        Summary2016_dict["COPD_Prevalence"] = result[3]
-        Summary2016_dict["Stroke_Prevalence"] = result[4]
-        Summary2016_dict["Heart_Prevalence"] = result[5]
-        Summary2016_dict["Median_AQI"] = result[6]
+        Summary2016_dict["Asthma Prevalence"] = result[2]
+        Summary2016_dict["COPD Prevalence"] = result[3]
+        Summary2016_dict["Stroke Prevalence"] = result[4]
+        Summary2016_dict["Heart Prevalence"] = result[5]
+        Summary2016_dict["Median AQI"] = result[6]
         Summary2016_dict["Population"] = result[7]
 
     print(Summary2016_dict)
@@ -160,6 +160,9 @@ def alldata():
         "Median_AQI": Summary2016_df.Median_AQI.values.tolist(),
         "Asthma": Summary2016_df.Asthma_Prevalence.values.tolist(),
         "COPD": Summary2016_df.COPD_Prevalence.values.tolist(),
+        "Stroke": Summary2016_df.Stroke_Prevalence.values.tolist(),
+        "Heart_Disease": Summary2016_df.Heart_Prevalence.values.tolist(),
+        "Population": Summary2016_df.Population.values.tolist(),
     }
     return jsonify(Summary2016_data)
 

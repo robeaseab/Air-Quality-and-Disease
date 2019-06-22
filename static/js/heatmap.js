@@ -55,17 +55,27 @@ d3.json(url, function (error, airData) {
     // Define a markerSize function that will give each quake a different radius based on its mag
 
     function markerColor(PMl) {
-      if (PMl >= 100) {
-        return "red";
+      if (PMl >= 250.4) {
+        return "#7e0023";
       }
-      else if (PMl >= 50) {
-        return "yellow";
+      else if (PMl >= 150.4) {
+        return "#8f3f97";
       }
-      else if (PMl < 50) {
-        return "green";
+      else if (PMl >= 55.4) {
+        return "#ff0000";
+      }
+      else if (PMl >= 35.4) {
+        return "#ff7e00";
+      }
+      else if (PMl >= 12.0) {
+        return "#ffff00";
+      }
+      else {
+        return "#00e400";
       }
 
     }
+
 
     function markerSize(PMl) {
       return PMl * 2000;
@@ -81,3 +91,18 @@ d3.json(url, function (error, airData) {
   }
   console.log("PM", PM)
 });
+
+
+var legend = L.control({ position: 'bottomleft' });
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    scale = ["#00e400", "#ffff00", "#ff7e00", "#ff0000", "#8f3f97", "#7e0023"],
+    labels = ["Good", "Moderate", "Unhealthy for Sensitive Groups", "Unhealthy", "Very Unhealthy", "Hazardous"];
+
+  for (var i = 0; i < scale.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + scale[i] + '"></i>' + labels[i] + '<br>';
+  }
+  return div;
+};
+legend.addTo(myMap);
