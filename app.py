@@ -15,8 +15,8 @@ pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 database = {
-    'user': 'SecondProject',
-    'password': 'p2password',
+    'user': '',
+    'password': '',
     'port': '3306',
     'host': 'localhost',
     'database': 'project2',
