@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Air Quality and Disease</title>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -23,15 +24,14 @@
     integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
     crossorigin=""></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
+
   <!-- CSS Scripts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/d3Style.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <!-- Home/TITLE -->
-  <!-- <a class="navbar-brand" href="/">AIR QUALITY</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -40,19 +40,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
     <ul class="navbar-nav ml-auto">
-
-      <!-- home -->
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <!-- heatmap -->
-      <li class="nav-item">
-        <a class="nav-link" href="/heatmap">See Current Air Quality</a>
-      </li>
-      <!-- Politicians -->
-      <li class="nav-item">
-        <a class="nav-link" href="/politicians" tabindex="-1">Contact My Representatives</a>
-      </li>
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/heatmap">See Current Air Quality</a>
+      <a class="nav-link" href="/politicians" tabindex="-1">Contact My Representatives</a>
     </ul>
 
   </div>
@@ -131,6 +121,7 @@
 
         <div class="row" id="politicians-card"></div>
       </div>
+      <br><br>
 
       <!-- Footer-->
       <div id="footer">

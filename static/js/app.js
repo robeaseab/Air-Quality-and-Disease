@@ -8,7 +8,7 @@ function showData(citydata) {
         console.log("Hi", test)
 
         Object.entries(test).forEach(([key, value]) => {
-            var cell = sample_metadata.append("tr")
+            let cell = sample_metadata.append("tr")
             cell.html(`<td>${key}:</td><td>${value}</td>`)
         })
 
@@ -26,8 +26,6 @@ function buildCharts(sample) {
     const air_sample = `/airquality/${sample}`
     d3.json(air_sample).then(function (u) {
 
-        let sample_array = u.data_values
-
         let data_bar = [{
             y: u.data_values,
             x: u.Year,
@@ -35,10 +33,10 @@ function buildCharts(sample) {
             type: "bar"
         }];
 
-        var layout2 = {
+        let layout2 = {
             title: 'AQI vs Year',
-            height: 600,
-            width: 800
+            height: 325,
+            width: 425,
         };
 
         Plotly.newPlot("bar", data_bar, layout2);
@@ -49,7 +47,6 @@ function buildSecond() {
 
     const url2 = `/alldata`
     d3.json(url2).then(function (data1) {
-        console.log("tessssss", data1.Asthma)
         let size1 = parseFloat(data1.Population) / 100000;
         let data = [{
             x: data1.Asthma,
@@ -66,8 +63,8 @@ function buildSecond() {
             showlegend: false,
             xaxis: { title: "Disease Prevalance" },
             yaxis: { title: "Median Air Quality Index" },
-            height: 600,
-            width: 800
+            height: 450,
+            width: 675
         };
 
         Plotly.newPlot(bubbles, data, layout);
