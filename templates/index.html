@@ -26,17 +26,17 @@
         integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
         crossorigin=""></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <!-- CSS Scripts -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/d3Style.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!-- Home/TITLE -->
-        <a class="navbar-brand" href="/">AIR QUALITY</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,59 +45,47 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav ml-auto">
-
-                <!-- home -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <!-- heatmap -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/heatmap">See Current Air Quality</a>
-                </li>
-                <!-- Politicians -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/politicians" tabindex="-1">Contact My Representatives</a>
-                </li>
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/heatmap">See Current Air Quality</a>
+                <a class="nav-link" href="/politicians" tabindex="-1">Contact My Representatives</a>
             </ul>
 
         </div>
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 jumbotron text-center">
-                <h1>Air Cleanliness</h1>
-                <h2>and Your Health</h2>
-            </div>
+        <div id="test">
+            <br>
+            <h1><b>Air Quality</b></h1>
+            <h3>and Your Health</h3>
+            <br>
         </div>
         <div class="row">
-            <div class="col-md-5">
-                <div class="well">
-                    <h5>Select City:</h5>
-                    <select id="selDataset" onchange="optionChanged(this.value)"></select>
-                </div>
-                <div class="panel panel-primary">
+            <div class="col-sm-6">
+                <h5>Select City:</h5>
+                <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                <br><br>
+
+                <div class="panel panel-success">
                     <div class="panel-heading">
                         <h3 class="panel-title">Statistics</h3>
                     </div>
                     <div id="sample-metadata" class="panel-body"></div>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-sm-6">
                 <div id="bar"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h1> </h1>
-                <h1> </h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="bubble"></div>
-            </div>
-        </div>
+        <br><br>
+
+        <select id="selDataset" onchange="getData(this.value)">
+            <option value="Asthma">Asthma</option>
+            <option value="COPD">COPD</option>
+            <option value="Stroke">Stroke</option>
+            <option value="Heart_Disease">Heart Disease</option>
+        </select>
+        <div id="plot"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>

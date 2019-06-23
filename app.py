@@ -15,8 +15,8 @@ pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 database = {
-    'user': 'SecondProject',
-    'password': 'p2password',
+    'user': '',
+    'password': '',
     'port': '3306',
     'host': 'localhost',
     'database': 'project2',
@@ -87,17 +87,18 @@ def summary2016(citydata):
     # Create a dictionary entry for each row of metadata information
     Summary2016_dict = {}
     for result in results:
-        Summary2016_dict["City"] = result[0]
-        Summary2016_dict["State"] = result[1]
-        Summary2016_dict["Asthma_Prevalence"] = result[2]
-        Summary2016_dict["COPD_Prevalence"] = result[3]
-        Summary2016_dict["Stroke_Prevalence"] = result[4]
-        Summary2016_dict["Heart_Prevalence"] = result[5]
-        Summary2016_dict["Median_AQI"] = result[6]
+        Summary2016_dict["-City"] = result[0]
+        Summary2016_dict["-State"] = result[1]
+        Summary2016_dict["Asthma Prevalence"] = result[2]
+        Summary2016_dict["COPD Prevalence"] = result[3]
+        Summary2016_dict["Stroke Prevalence"] = result[4]
+        Summary2016_dict["Heart Prevalence"] = result[5]
+        Summary2016_dict["Median AQI"] = result[6]
         Summary2016_dict["Population"] = result[7]
 
     print(Summary2016_dict)
     return jsonify(Summary2016_dict)
+
 
 @app.route("/disease/<disease>")
 def disease2016(diseasedata):
@@ -118,6 +119,7 @@ def disease2016(diseasedata):
 
     # print(results)
     return jsonify(results)
+
 
 @app.route("/airquality/<airquality>")
 def airquality(airquality):
@@ -145,6 +147,24 @@ def world():
         "date": WorldAir_df.date.values.tolist(),
     }
     return jsonify(WorldAir_data)
+
+
+@app.route("/alldata")
+def alldata():
+
+    stmt = db.session.query(Summary2016).statement
+    Summary2016_df = pd.read_sql_query(stmt, db.session.bind)
+
+    Summary2016_data = {
+        "City": Summary2016_df.City.values.tolist(),
+        "Median_AQI": Summary2016_df.Median_AQI.values.tolist(),
+        "Asthma": Summary2016_df.Asthma_Prevalence.values.tolist(),
+        "COPD": Summary2016_df.COPD_Prevalence.values.tolist(),
+        "Stroke": Summary2016_df.Stroke_Prevalence.values.tolist(),
+        "Heart_Disease": Summary2016_df.Heart_Prevalence.values.tolist(),
+        "Population": Summary2016_df.Population.values.tolist(),
+    }
+    return jsonify(Summary2016_data)
 
 
 if __name__ == "__main__":
