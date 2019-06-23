@@ -34,9 +34,16 @@ function buildCharts(sample) {
         }];
 
         let layout2 = {
-            title: 'AQI vs Year',
-            height: 325,
-            width: 425,
+            title: `${sample} Air Quality History`,
+            xaxis: {
+                title: "Year",
+                tickangle : -45,
+                // show every x tick
+                type: "category"
+            },
+            yaxis: { title: "Median Air Quality Index" },
+            height: 350,
+            width: 600,
         };
 
         Plotly.newPlot("bar", data_bar, layout2);
@@ -61,7 +68,7 @@ function buildSecond() {
         let layout = {
             title: 'Disease Prevalance vs Air Quality (2016)',
             showlegend: false,
-            xaxis: { title: "Disease Prevalance" },
+            xaxis: { title: "Disease Prevalance (%)" },
             yaxis: { title: "Median Air Quality Index" },
             height: 450,
             width: 675
