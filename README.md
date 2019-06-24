@@ -4,8 +4,11 @@ Our goal was to create a site in which users could learn about Air Quality Indic
 
 ##### Sources: 
 Annual summary (AQI by CBSA) data from EPA (2001-2018)
+
 Most recent data from 500 Cities Project, CDC (2016)
+
 GovTrack API
+
 AirNow API
 
 ##### Skills Used:
