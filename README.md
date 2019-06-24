@@ -12,6 +12,8 @@ AirNow API
 Flask, Python, HTML, CSS, Bootstrap, JavaScript, Leaflet, Plotly.js, and mySQL
 
 
-![1](https://raw.githubusercontent.com/robeaseab/Air-Quality-and-Disease/master/Output/Screenshot_2019-06-24%20Air%20Quality%20and%20Disease(1).png)
 
 ![2](https://raw.githubusercontent.com/robeaseab/Air-Quality-and-Disease/master/Output/Screenshot_2019-06-24%20Air%20Quality%20and%20Disease.png)
+
+![1](https://raw.githubusercontent.com/robeaseab/Air-Quality-and-Disease/master/Output/Screenshot_2019-06-24%20Air%20Quality%20and%20Disease(1).png)
+
